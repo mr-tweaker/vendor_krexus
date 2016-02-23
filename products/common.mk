@@ -85,6 +85,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     media.sf.omx-plugin=libffmpeg_omx.so \
     media.sf.extractor-plugin=libffmpeg_extractor.so
 
+#RCS //Needed for Contacts and Mms Apps
+PRODUCT_PACKAGES += \
+    rcs_service_aidl \
+    rcs_service_aidl.xml \
+    rcs_service_aidl_static \
+    rcs_service_api \
+    rcs_service_api.xml
+
 # World APN list
 PRODUCT_COPY_FILES += \
     vendor/krexus/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
