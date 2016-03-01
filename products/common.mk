@@ -6,7 +6,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.wifi-watchlist=GoogleGuest \
     ro.setupwizard.enterprise_mode=1 \
     ro.com.android.dateformat=MM-dd-yyyy \
-    ro.com.android.dataroaming=false
+    ro.com.android.dataroaming=false \
+    ro.setupwizard.network_required=false \
+    ro.setupwizard.gservices_delay=-1 \
+    ro.adb.secure=1 \
+    ro.krexus.version=krexus_mm-$(shell date +"%y%m%d")-$(TARGET_DEVICE)
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.selinux=1
@@ -39,6 +43,12 @@ PRODUCT_COPY_FILES +=  \
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
+
+# Backuptool Support
+PRODUCT_COPY_FILES += \
+    vendor/krexus/prebuilt/common/addon.d/50-krexus.sh:system/addon.d/50-krexus.sh \
+    vendor/krexus/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
+    vendor/krexus/prebuilt/common/bin/backuptool.functions:system/bin/backuptool.functions
 
 # Enable wireless Xbox 360 controller support
 PRODUCT_COPY_FILES += \
@@ -108,10 +118,5 @@ endif
 
 # by default, do not update the recovery with system updates
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
-
-ifneq ($(TARGET_BUILD_VARIANT),eng)
-# Enable ADB authentication
-ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1
-endif
 
 $(call inherit-product-if-exists, vendor/extra/product.mk)
