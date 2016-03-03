@@ -1,3 +1,8 @@
+# Generic product
+PRODUCT_NAME := krexus
+PRODUCT_BRAND := krexus
+PRODUCT_DEVICE := generic
+
 PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
     ro.com.google.clientidbase=android-google \
@@ -12,33 +17,23 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.adb.secure=1 \
     ro.krexus.version=krexus_mm-$(shell date +"%y%m%d")-$(TARGET_DEVICE)
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.selinux=1
-
 # Thank you, please drive thru!
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.dun.override=0
+
+# Common overlay
+PRODUCT_PACKAGE_OVERLAYS += vendor/krexus/overlay/common
 
 # Bootanimation
 PRODUCT_COPY_FILES += \
     vendor/krexus/prebuilt/common/media/bootanimation.zip:system/media/bootanimation.zip
 
-# Include LatinIME dictionaries
-PRODUCT_PACKAGE_OVERLAYS += vendor/krexus/overlay/dictionaries
-
-# init.d support
-PRODUCT_COPY_FILES += \
-    vendor/krexus/prebuilt/common/bin/sysinit:system/bin/sysinit \
-    vendor/krexus/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
-    vendor/krexus/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
-
-# Init file
-PRODUCT_COPY_FILES += \
-    vendor/krexus/prebuilt/common/etc/init.local.rc:root/init.local.rc
-
-# Bring in camera effects
-PRODUCT_COPY_FILES +=  \
-    vendor/krexus/prebuilt/common/media/LMprec_508.emd:system/media/LMprec_508.emd \
-    vendor/krexus/prebuilt/common/media/PFFprec_600.emd:system/media/PFFprec_600.emd
+# Extra Packages
+PRODUCT_PACKAGES += \
+    Busybox \
+    Launcher3 \
+    LiveWallpapersPicker \
+    Stk \
+    WallpaperPicker
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -90,10 +85,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     media.sf.omx-plugin=libffmpeg_omx.so \
     media.sf.extractor-plugin=libffmpeg_extractor.so
 
-# Telephony packages
-PRODUCT_PACKAGES += \
-    Stk
-
 # World APN list
 PRODUCT_COPY_FILES += \
     vendor/krexus/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
@@ -101,11 +92,6 @@ PRODUCT_COPY_FILES += \
 # Selective SPN list for operator number who has the problem.
 PRODUCT_COPY_FILES += \
     vendor/krexus/prebuilt/common/etc/selective-spn-conf.xml:system/etc/selective-spn-conf.xml
-
-# Overlays & Include LatinIME dictionaries
-PRODUCT_PACKAGE_OVERLAYS += \
-	vendor/krexus/overlay/common \
-	vendor/krexus/overlay/dictionaries
 
 # Proprietary latinime libs needed for Keyboard swyping
 ifneq ($(filter arm64,$(TARGET_ARCH)),)
@@ -118,5 +104,15 @@ endif
 
 # by default, do not update the recovery with system updates
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
+
+# init.d support
+PRODUCT_COPY_FILES += \
+    vendor/krexus/prebuilt/common/bin/sysinit:system/bin/sysinit \
+    vendor/krexus/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
+    vendor/krexus/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
+
+# Init file
+PRODUCT_COPY_FILES += \
+    vendor/krexus/prebuilt/common/etc/init.local.rc:root/init.local.rc
 
 $(call inherit-product-if-exists, vendor/extra/product.mk)

@@ -1,8 +1,11 @@
-# Inherit AOSP device configuration for hammerhead.
+# Inherit AOSP device configuration
 $(call inherit-product, device/motorola/osprey/full_osprey.mk)
 
 # Inherit common product files.
 $(call inherit-product, vendor/krexus/products/common.mk)
+
+# Inherit vendor specific product files.
+#$(call inherit-product, vendor/krexus/products/vendorless.mk)
 
 # Setup device specific product configuration.
 PRODUCT_NAME := krexus_osprey
