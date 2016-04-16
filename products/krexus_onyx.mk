@@ -1,5 +1,5 @@
 # Inherit device configuration.
-$(call inherit-product, device/motorola/osprey/full_osprey.mk)
+$(call inherit-product, device/oneplus/onyx/device.mk)
 
 # Inherit common product files.
 $(call inherit-product, vendor/krexus/products/common.mk)
@@ -8,13 +8,13 @@ $(call inherit-product, vendor/krexus/products/common.mk)
 $(call inherit-product, vendor/krexus/products/vendorless.mk)
 
 # Setup device specific product configuration.
-PRODUCT_NAME := krexus_osprey
-PRODUCT_BRAND := motorola
-PRODUCT_DEVICE := osprey
-PRODUCT_MODEL := Moto G 2015
-PRODUCT_MANUFACTURER := Motorola
+PRODUCT_NAME := krexus_onyx
+PRODUCT_BRAND := oneplus
+PRODUCT_DEVICE := onyx
+PRODUCT_MODEL := OnePlus X
+PRODUCT_MANUFACTURER := OnePlus
 
-PRODUCT_GMS_CLIENTID_BASE := android-motorola
+PRODUCT_GMS_CLIENTID_BASE := android-oneplus
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME=osprey
+    PRODUCT_NAME=onyx
