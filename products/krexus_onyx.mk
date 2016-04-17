@@ -1,5 +1,5 @@
 # Inherit device configuration.
-$(call inherit-product, device/oneplus/onyx/device.mk)
+$(call inherit-product, device/oneplus/onyx/aosp_onyx.mk)
 
 # Inherit common product files.
 $(call inherit-product, vendor/krexus/products/common.mk)
