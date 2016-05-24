@@ -12,7 +12,7 @@ $(call inherit-product-if-exists, device/oneplus/bacon/krexus_maintainer.mk)
 
 # Setup device specific product configuration.
 PRODUCT_NAME := krexus_bacon
-PRODUCT_BRAND := OnePlus
+PRODUCT_BRAND := oneplus
 PRODUCT_DEVICE := bacon
 PRODUCT_MODEL := A0001
 PRODUCT_MANUFACTURER := OnePlus

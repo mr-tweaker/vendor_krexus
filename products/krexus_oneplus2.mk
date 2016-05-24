@@ -11,7 +11,7 @@ $(call inherit-product, vendor/krexus/products/vendorless.mk)
 $(call inherit-product-if-exists, device/oneplus/oneplus2/krexus_maintainer.mk)
 
 PRODUCT_NAME := krexus_oneplus2
-PRODUCT_BRAND := OnePlus
+PRODUCT_BRAND := oneplus
 PRODUCT_DEVICE := oneplus2
 PRODUCT_MODEL := oneplus2
 PRODUCT_MANUFACTURER := OnePlus
